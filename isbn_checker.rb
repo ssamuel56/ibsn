@@ -1,7 +1,7 @@
 class String
 
   def str
-    self.gsub(/[- \s]/, "\s" => "", "-" => "")
+    str = self.gsub(/[- \s]/, "\s" => "", "-" => "")
   end
 
   def return_check_digit_10()
@@ -23,9 +23,13 @@ class String
   end
 
   def verify_number()
-    valid = false
-    valid = true if return_check_digit_10() == str[-1].to_i
-    valid = true if return_check_digit_10() == 10 && str[-1] == 'x'
+    valid = [
+    str.length == 10 && return_check_digit_10() == str[-1].to_i,
+    return_check_digit_10() == 10 && str[-1] == 'x',
+    (return_check_digit_13() == str[-1].to_i)
+    ]
+    valid.include?(true) ? valid = true : valid = false
+    valid = false if str[0..8][/\D/]
     return valid
   end
 
