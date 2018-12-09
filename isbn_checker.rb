@@ -29,7 +29,8 @@ class String
     (return_check_digit_13() == str[-1].to_i)
     ]
     valid.include?(true) ? valid = true : valid = false
-    valid = false if str[0..8][/\D/]
+    valid = false if str.length == 10 && str[0..8][/\D/]
+    valid = false if str.length == 13 && str[0..11][/\D/]
     return valid
   end
 
