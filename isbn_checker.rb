@@ -13,9 +13,17 @@ class String
     return check_digit
   end
 
+  def return_check_digit_13()
+    ary = str[0..11].split("").each_with_index.map {
+      |x, index|
+      (index + 1).odd? ? x.to_i * 1 : x.to_i * 3
+    }
+    check_digit = (10 - (ary.sum() % 10)) % 10
+    return check_digit
+  end
+
   def verify_number()
-    puts return_check_digit_10
-    puts str[-1]
+    valid = false
     valid = true if return_check_digit_10() == str[-1].to_i
     valid = true if return_check_digit_10() == 10 && str[-1] == 'x'
     return valid
