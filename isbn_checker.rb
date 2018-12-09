@@ -22,13 +22,14 @@ class String
     return check_digit
   end
 
-  def verify_number()
-    valid = [
-    str.length == 10 && return_check_digit_10() == str[-1].to_i,
+  def validation
+    [ str.length == 10 && return_check_digit_10() == str[-1].to_i,
     return_check_digit_10() == 10 && str[-1] == 'x',
-    (return_check_digit_13() == str[-1].to_i)
-    ]
-    valid.include?(true) ? valid = true : valid = false
+    return_check_digit_13() == str[-1].to_i ]
+  end
+
+  def verify_number()
+    validation.include?(true) ? valid = true : valid = false
     valid = false if str.length == 10 && str[0..8][/\D/]
     valid = false if str.length == 13 && str[0..11][/\D/]
     return valid
