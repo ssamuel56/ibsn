@@ -1,7 +1,7 @@
 class String
 
   def str
-    str = self.gsub(/[- \s]/, "\s" => "", "-" => "")
+    self.gsub(/[- \s]/, "\s" => "", "-" => "")
   end
 
   def return_check_digit_10()
