@@ -20,12 +20,18 @@ class Test_for_isbn < Minitest::Test
     assert_equal(true, "0-321-14653-0".verify_number)
     assert_equal(true, "0471958697".verify_number)
     assert_equal(true, "978-0-13-149505-0".verify_number)
+    assert_equal(true, "99921-58-10-7".verify_number)
+    assert_equal(true, "960-425-059-0".verify_number)
+    assert_equal(true, "85-359-0277-5".verify_number)
   end
 
   def test_for_verify_false
     assert_equal(false, "4780470059029".verify_number)
     assert_equal(false, "0-321@14653-0".verify_number)
     assert_equal(false, "877195x869".verify_number)
+    assert_equal(false, "877197x869".verify_number)
+    assert_equal(false, "48565111x869".verify_number)
+    assert_equal(false, "1 2 3 4 5 6 - 77-9x".verify_number)
   end
 
 end
