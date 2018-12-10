@@ -1,7 +1,7 @@
 class String
 
   def str
-    self.gsub(/[- \s]/, "\s" => "", "-" => "")
+    self.downcase.gsub(/[- \s]/, "\s" => "", "-" => "")
   end
 
   def return_check_digit_10()
@@ -9,8 +9,7 @@ class String
       |x, index|
       index != 9 ? x.to_i * (index + 1) : 0
     }
-    check_digit = ary.sum() % 11
-    return check_digit
+    return ary.sum() % 11
   end
 
   def return_check_digit_13()
@@ -18,8 +17,7 @@ class String
       |x, index|
       (index + 1).odd? ? x.to_i * 1 : x.to_i * 3
     }
-    check_digit = (10 - (ary.sum() % 10)) % 10
-    return check_digit
+    return (10 - (ary.sum() % 10)) % 10
   end
 
   def validation

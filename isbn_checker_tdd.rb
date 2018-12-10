@@ -23,6 +23,7 @@ class Test_for_isbn < Minitest::Test
     assert_equal(true, "99921-58-10-7".verify_number)
     assert_equal(true, "960-425-059-0".verify_number)
     assert_equal(true, "85-359-0277-5".verify_number)
+    assert_equal(true, "0000000000000".verify_number)
   end
 
   def test_for_verify_false
