@@ -28,7 +28,7 @@ class String
 
   def verify_number()
     validation.include?(true) ? valid = true : valid = false
-    valid = false if str.length != 10 || str.length != 13
+    valid = false unless str.length == 10 || str.length == 13
     valid = false if str.length == 10 && str[0..8][/\D/]
     valid = false if str.length == 13 && str[0..12][/\D/]
     return valid
