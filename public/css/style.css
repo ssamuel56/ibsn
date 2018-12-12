@@ -1,0 +1,30 @@
+body {
+  color: white;
+  margin: auto;
+  text-align: center;
+  background-color: #33004d;
+}
+
+h1 {
+  color: #1a1a1a;
+  margin-top: 0;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+  background-color: #ccccff;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+}
+
+input[type="image"]{
+  max-width: 2em;
+}
+
+input[type="text"]{
+  border-color: transparent;
+}
+
+.main-content {
+}

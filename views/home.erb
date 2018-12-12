@@ -1,0 +1,22 @@
+<form class="" action="/check" method="post">
+  <h2>What number do you want to check?</h2>
+  <div class="input">
+    <div>
+      <input id="number" type="text" name="isbn" pattern="[-0-9Xx\s]{10,26}" required>
+    </div>
+    <div>
+      &nbsp;
+    </div>
+    <div>
+      <input type="image" src="pics/arrow.png" value="Submit">
+    </div>
+  </div>
+</form>
+
+<br>
+
+<% if number.class == String && number.verify_number%>
+  <h2><%= number%> is a correct ISBN</h2>
+<% elsif number.class == String && number.verify_number == false%>
+  <h2><%= number%> is not a correct isbn</h2>
+<% end%>
