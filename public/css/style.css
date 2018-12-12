@@ -19,7 +19,8 @@ h1 {
 }
 
 input[type="image"]{
-  max-width: 2em;
+  background-color: white;
+  max-width: 1.75em;
 }
 
 input[type="text"]{

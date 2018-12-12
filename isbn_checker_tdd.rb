@@ -35,4 +35,25 @@ class Test_for_isbn < Minitest::Test
     assert_equal(false, "1 2 3 4 5 6 - 77-9x".verify_number)
   end
 
+  def test_isbn_file_maker
+    assert_equal(" 9780470059029, Valid
+ 4780470059029, Invalid
+ 978 0 471 48648 0, Valid
+ 978-0596809485, Valid
+ 978-0-13-149505-0, Valid
+ 978-0-262-13472-9, Valid
+ 7465905, Invalid
+ 00000000, Invalid
+ 7987022-78962-ds-22, Invalid
+ 0471958697, Valid
+ 0 471 60695 2, Valid
+ 0-470-84525-2, Valid
+ 0-321-14653-0, Valid
+ 877195869x, Valid
+ 877195x869, Invalid
+ 877195869xx, Invalid
+ 877195@869x, Invalid
+", isbn_file_maker("isbn.csv"))
+  end
+
 end

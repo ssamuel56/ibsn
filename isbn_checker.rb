@@ -1,3 +1,5 @@
+require 'csv'
+
 class String
 
   def str
@@ -34,4 +36,16 @@ class String
     return valid
   end
 
+end
+
+
+def isbn_file_maker(file)
+  new_file = File.new("isbn_numbers.csv", "w+")
+  CSV.foreach(file) do |row|
+    new_file.write(row[1] + ", ")
+    new_file.write(row[1].to_s.verify_number() ? "Valid" : "Invalid")
+    new_file.write("\n")
+  end
+  new_file.seek(0)
+  return new_file.read
 end
