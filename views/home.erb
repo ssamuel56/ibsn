@@ -1,9 +1,21 @@
 <form class="" action="/check" method="post">
-  <h2>What number do you want to check?</h2>
+  <h2>Check for a number</h2>
+  <br><br>
   <div class="input">
     <div>
       <input id="number" type="text" name="isbn" pattern="[-0-9Xx\s]{10,26}"
       placeholder="123 or 1-2-3 or 1 2 3" required>
+    </div>
+    <div>
+      <input type="image" src="pics/arrow.png" value="Submit">
+    </div>
+  </div>
+</form action>
+<form action="/file" method="post">
+  <h2>Use a CSV file</h2>
+  <div class="input">
+    <div>
+      <input id="number" type="file" name="isbn" required>
     </div>
     <div>
       <input type="image" src="pics/arrow.png" value="Submit">
@@ -17,4 +29,10 @@
   <h2><%= number%> is a correct ISBN</h2>
 <% elsif number.class == String && number.verify_number == false%>
   <h2><%= number%> is not a correct isbn</h2>
+<% end%>
+
+<% if file != nil%>
+  <% file.split(",").each_slice(2).each do |items|%>
+    <li><%= items[0]%>, <%= items[1]%></li>
+  <% end%>
 <% end%>
