@@ -48,4 +48,5 @@ def isbn_file_maker(file)
   end
   new_file.seek(0)
   return new_file.read
+  new_file.close
 end
