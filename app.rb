@@ -14,6 +14,6 @@ end
 
 post '/file' do
   isbn = params[:isbn]
-  isbn = isbn_file_maker(isbn)
+  isbn[-3..-1] == "csv" ? isbn = isbn_file_maker(isbn) : isbn = "Please use CSV"
   redirect '/?file=' + isbn
 end
