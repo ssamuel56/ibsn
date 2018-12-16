@@ -40,7 +40,7 @@ end
 
 
 def isbn_file_maker(file)
-  new_file = File.new("isbn_numbers.csv", "w+")
+  new_file = File.open("isbn_numbers.csv", "w+") {|file| file.truncate(0) }
   CSV.foreach(file) do |row|
     new_file.write(row[1] + ", ")
     new_file.write(row[1].to_s.verify_number() ? "Valid" : "Invalid")
