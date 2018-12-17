@@ -42,13 +42,16 @@ end
 def isbn_file_maker(file)
   new_file = File.open("isbn_numbers.csv", "w+")
   new_file.truncate(0)
+
   CSV.foreach(file) do |row|
     new_file.write(row[1] + ", ")
     new_file.write(row[1].to_s.verify_number() ? "Valid" : "Invalid")
     new_file.write("\n")
   end
+
   new_file.seek(0)
   text = new_file.read
   new_file.close
+
   return text
 end
