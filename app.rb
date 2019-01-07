@@ -24,7 +24,6 @@ post '/file' do
     s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
     obj = s3.bucket(bucket).object('isbn.csv')
     obj.upload_file('isbn.csv')
-    redirect "https://#{bucket}.s3.amazonaws.com/#{isbn_file_name}"
   else
     isbn = "Please use CSV"
   end
