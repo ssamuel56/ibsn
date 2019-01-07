@@ -28,8 +28,7 @@ post '/file' do
      bucket,
      :access => :public_read
     )
-    url = "https://#{bucket}.s3.amazonaws.com/#{filename}"
-    redirect url
+    redirect "https://#{bucket}.s3.amazonaws.com/#{isbn_file_name}"
   else
     isbn = "Please use CSV"
   end
