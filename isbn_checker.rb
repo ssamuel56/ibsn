@@ -40,7 +40,7 @@ end
 
 
 def isbn_file_maker(file)
-  new_file = File.open("isbn_numbers.csv", "w+")
+  new_file = File.open("myfile.csv", "w+")
   new_file.truncate(0)
 
   CSV.foreach(file) do |row|
@@ -54,4 +54,26 @@ def isbn_file_maker(file)
   new_file.close
 
   return text
+end
+
+
+def write_to_csv(array)
+  temp_file = File.open('isbn_temp.csv', 'w+')
+  temp_file.truncate(0)
+  array.each do |ary|
+    temp_file.write(ary[0] + "," + ary[1] + "\n")
+  end
+  return temp_file
+end
+
+def correct_isbn_in_array(array)
+  final_file = File.open('isbn_temp.csv', 'w+')
+  final_file.truncate(0)
+  array.each do |ary|
+    final_file.write(ary[1] + ", ")
+    final_file.write(ary[1].to_s.verify_number() ? "Valid" : "Invalid")
+    final_file.write("\n")
+  end
+  final_file.seek(0)
+  return final_file.read
 end

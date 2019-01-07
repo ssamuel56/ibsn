@@ -36,7 +36,7 @@
 <% if file == "Please use CSV"%>
   <%= file%>
 <% elsif file != nil%>
-  <% file.split(",").each_slice(2).each do |items|%>
+  <% File.open(file, 'w+').read.split("\n").each_slice(1).each do |items|%>
     <li><%= items[0]%>, <%= items[1]%></li>
   <% end%>
 <% end%>
