@@ -12,15 +12,15 @@
   </div>
 </form>
 <br>
-<form action="/file" method="post">
+<form action="/file" method="post" enctype="multipart/form-data">
   <h2>Use a CSV file</h2>
   <br><br>
   <div class="input">
     <div>
-      <input id="number" type="file" name="isbn" accept=".csv" required>
+      <input type="file" name="isbn"  id="file" accept=".csv" required>
     </div>
     <div>
-      <input type="submit" src="pics/arrow.png" value="upload">
+      <input type="image" src="pics/arrow.png" value="Submit">
     </div>
   </div>
 </form>
