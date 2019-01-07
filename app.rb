@@ -1,6 +1,6 @@
 require 'sinatra'
 require_relative 'isbn_checker.rb'
-require 'aws-sdk-s3'
+require 'aws-sdk'
 
 get '/' do
   number = params[:number]
@@ -16,14 +16,15 @@ end
 post '/file' do
   isbn_file = params[:isbn][:tempfile]
   isbn_file_name = params[:isbn][:filename]
-  bucket = ENV['S3_BUCKET']
   if isbn_file_name[-3..-1] == "csv"
-    Aws.config.update({
-     credentials: Aws::Credentials.new(ENV['S3_key'], ENV['S3_SECRET'])
-    })
-    s3 = Aws::S3::Resource.new(region: ENV['AWS_REGION'])
-    obj = s3.bucket(bucket).object('isbn.csv')
-    obj.upload_file('isbn.csv')
+    s3 = Aws::S3::Client.new
+    File.open('isbn.csv', 'rb') do |file|
+      s3.put_object({
+        bucket: ENV['S3_BUCKET'],
+        key: 'isbn.csv',
+        body: file
+      })
+    end
   else
     isbn = "Please use CSV"
   end
