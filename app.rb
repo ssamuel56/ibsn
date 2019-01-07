@@ -2,7 +2,7 @@ require 'sinatra'
 require 'csv'
 require_relative 'isbn_checker.rb'
 require 'aws-sdk'
-load 'local_env.rb'
+load 'local_env.rb' if load 'local_env.rb'
 
 Aws.config.update({
    credentials: Aws::Credentials.new(ENV['S3_KEY'], ENV['S3_SECRET'])
