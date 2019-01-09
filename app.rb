@@ -20,17 +20,17 @@ post '/check' do
 end
 
 post '/file' do
-  isbn_file = params[:isbn]
-  if isbn_file[-3..-1] == "csv"
+  isbn_file = params[:isbn][:tempfile]
+  isbn_file_name = params[:isbn][:filename]
+  if isbn_file_name[-3..-1] == "csv"
     s3 = Aws::S3::Client.new(profile: ENV['PROFILE_NAME'], region: ENV['AWS_REGION'])
     hosted_file = s3.get_object(bucket: ENV['S3_BUCKET'], key: ENV['key'])
     partial_file = hosted_file.body.read
-    full_file =  partial_file + File.read(isbn_file)
-    full_file = full_file.gsub("\r\n", "\n")
-    correct_isbn_in_array(CSV.parse(full_file))
-    isbn = 'myfile.csv'
+    full_file = isbn_file_maker(isbn_file, partial_file)
     s3 = Aws::S3::Resource.new
-    s3.bucket(ENV['S3_BUCKET']).object(ENV['key']).upload_file('C:\Users\samue\Documents\Code\isbn_checker\myfile.csv')
+    s3.bucket(ENV['S3_BUCKET']).object(ENV['key']).upload_file(File.open(full_file))
+    isbn = full_file.open.read.gsub("\n", ",")
+    print isbn
   else
     isbn = "Please use CSV"
   end

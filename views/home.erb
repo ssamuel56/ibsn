@@ -12,7 +12,7 @@
   </div>
 </form>
 <br>
-<form action="/file" method="post">
+<form action="/file" method="post" enctype="multipart/form-data">
   <h2>Use a CSV file</h2>
   <br><br>
   <div class="input">
@@ -36,7 +36,7 @@
 <% if file == "Please use CSV"%>
   <%= file%>
 <% elsif file != nil%>
-  <% File.open(file, 'w+').read.split("\n").each_slice(1).each do |items|%>
+  <% file.split(",").each_slice(2).each do |items|%>
     <li><%= items[0]%>, <%= items[1]%></li>
   <% end%>
 <% end%>

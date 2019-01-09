@@ -39,9 +39,8 @@ class String
 end
 
 
-def isbn_file_maker(file)
-  new_file = File.open("myfile.csv", "w+")
-  new_file.truncate(0)
+def isbn_file_maker(file, base)
+  new_file = Tempfile.new
 
   CSV.foreach(file) do |row|
     new_file.write(row[1] + ", ")
@@ -49,31 +48,32 @@ def isbn_file_maker(file)
     new_file.write("\n")
   end
 
+  new_file.write(base)
   new_file.seek(0)
   text = new_file.read
   new_file.close
 
-  return text
+  return new_file
 end
 
 
 def write_to_csv(array)
+  File.delete('isbn_temp.csv') if File.exist?('isbn_temp.csv')
   temp_file = File.open('isbn_temp.csv', 'w+')
   temp_file.truncate(0)
   array.each do |ary|
     temp_file.write(ary[0] + "," + ary[1] + "\n")
   end
-  return temp_file
+  return temp_file.read
 end
 
 def correct_isbn_in_array(array)
-  final_file = File.open('isbn_temp.csv', 'w+')
+  final_file = Tempfile.new('isbn')
   final_file.truncate(0)
   array.each do |ary|
     final_file.write(ary[1] + ", ")
     final_file.write(ary[1].to_s.verify_number() ? "Valid" : "Invalid")
     final_file.write("\n")
   end
-  final_file.seek(0)
-  return final_file.read
+  return final_file
 end
