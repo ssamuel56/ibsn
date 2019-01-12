@@ -30,7 +30,6 @@ post '/file' do
     s3 = Aws::S3::Resource.new
     s3.bucket(ENV['S3_BUCKET']).object(ENV['key']).upload_file(File.open(full_file))
     isbn = full_file.open.read.gsub("\n", ",")
-    print isbn
   else
     isbn = "Please use CSV"
   end
