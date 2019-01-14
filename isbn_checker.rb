@@ -64,7 +64,7 @@ def s3_function(isbn_file)
   full_file = isbn_file_maker(isbn_file, partial_file)
 
   assesed_file = full_file
-  assesed_file = Tempfile.new if full_file.size > 6000
+  assesed_file = Tempfile.new if full_file.size > 12000
 
   s3 = Aws::S3::Resource.new
   s3.bucket(ENV['S3_BUCKET']).object(ENV['key']).upload_file(File.open(assesed_file))
